@@ -1,8 +1,18 @@
-import { Box, Button, VStack, Text, Circle, HStack, Image } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Flex,
+	Text,
+	Circle,
+	HStack,
+	Image,
+    Spacer
+} from "@chakra-ui/react";
 import PageWrapper from "./components/PageWrapper";
-import ProgressBar from "./components/ProgressBar";
 import { useState } from "react";
 import TinderCard from "react-tinder-card";
+import dislike from "./assets/dislike.png";
+import like from "./assets/like.png";
 
 const onSwipe = (direction) => {
 	console.log("You swiped: " + direction);
@@ -11,7 +21,6 @@ const onSwipe = (direction) => {
 const onCardLeftScreen = (myIdentifier) => {
 	console.log(myIdentifier + " left the screen");
 };
-
 
 function SwipePage() {
 	let circs = [];
@@ -34,6 +43,12 @@ function SwipePage() {
 
 	return (
 		<PageWrapper>
+			<Text align="center" fontSize="xl" mt="50">
+				Swipe left if you like the food, or swipe right if you don't.
+			</Text>
+			<Text align="center" fontSize="xl">
+				Swipe through at least 10 images to get your recommendation!
+			</Text>
 			<TinderCard
 				onSwipe={onSwipe}
 				onCardLeftScreen={() => onCardLeftScreen("fooBar")}
@@ -48,16 +63,19 @@ function SwipePage() {
 					mt={30}
 				/>
 			</TinderCard>
-			<Text align="center" fontSize="xl" mt="50">
-				Swipe left if you like the food, or swipe right if you don't.
-			</Text>
-			<Text align="center" fontSize="xl">
-				Swipe through at least 10 images to get your recommendation!
-			</Text>
 			<Box bg="gray.300" mb={30} w="500px" borderBottomRadius="md" p="3">
 				Placeholder text
 			</Box>
 			<HStack spacing="3">{circs}</HStack>
+            <Flex w="500px">
+			<Button borderRadius="full" h="120px" w="120px" bg="#f59681">
+				<Image src={dislike} alt="Dislike" boxSize="90px" m={2} p={2} />
+			</Button>
+            <Spacer />
+			<Button borderRadius="full" h="120px" w="120px" bg="#89c58b">
+				<Image src={like} alt="Like" boxSize="90px" m={2} p={2} />
+			</Button>
+            </Flex>
 		</PageWrapper>
 	);
 }
