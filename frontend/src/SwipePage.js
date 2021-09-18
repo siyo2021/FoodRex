@@ -20,10 +20,6 @@ import { useHistory } from "react-router-dom";
 
 function SwipePage(props) {
 	const history = useHistory();
-	const [pic, setPic] = useState(
-		"https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
-	);
-	const [description, setDescription] = useState("Placeholder text");
 	const [swipes, setSwipes] = useState(1);
 	const [items, setItems] = useState([]);
 
