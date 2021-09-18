@@ -17,14 +17,14 @@ function RecPage() {
 	return (
 		<PageWrapper>
 			<Header />
-			<Text align="center" fontSize="xl" mt="20">
+			<Text align="center" fontSize="3xl" pb="8">
 				{" "}
 				Here's what we recommend:{" "}
 			</Text>
 			<RecCard></RecCard>
 			<RecCard></RecCard>
 			<RecCard></RecCard>
-			<VStack mt="10" spacing="3">
+			<VStack mt="20" spacing="3">
 				<Button w="60%" bg="orange" color="white" borderRadius="full">
 					Reset
 				</Button>

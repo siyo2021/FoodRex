@@ -18,7 +18,11 @@ function Landing() {
 			<Box bg="orange" width="100%" textAlign="center" pt="70px">
 				<HStack width="44%" margin="auto" mb="40px">
 					<Image src="../Dino.png" alt="A dinosaur" boxSize="70px" />
-					<Heading fontSize="3.2rem" fontFamily="heading">
+					<Heading
+						fontSize="3.2rem"
+						fontFamily="heading"
+						color="gray.500"
+					>
 						Food Rex
 					</Heading>
 				</HStack>
