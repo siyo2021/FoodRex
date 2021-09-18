@@ -85,13 +85,52 @@ app.get("/recommendations/:userId", async (req, res) => {
 // update a users preferences
 app.post("/updateUser", (req, res) => {
 	const {
-		body: { userId },
+		body: { userId, categories },
 	} = req;
 	if (userId === undefined) {
-		res.status(400).send("MISSING userId");
-		return;
+		userId = 2
 	}
-	res.sendStatus(200);
+  if (categories === undefined){
+    res.status(400).send("MISSING CATEGORIES");
+    return;
+  }
+
+  var isBad = false
+  categories.forEach(({category, value}) => {
+    if (category === undefined || value === undefined){
+      isBad = true;
+    }
+  });
+  if (isBad){
+    res.status(400).send("MISSING INFORMATION");
+    return;
+  }
+
+  categories.forEach(async ({category, value}) => {
+    const query = `IF (NOT EXISTS(SELECT * FROM \`htn-foodrex.test.foodrex_users\` WHERE id = ${userId} AND preference = "${category}")) THEN 
+    INSERT INTO \`htn-foodrex.test.foodrex_users\`
+    VALUES(${userId}, "${category}", ${value});
+ELSE 
+    UPDATE \`htn-foodrex.test.foodrex_users\`
+    SET value = value + ${value}
+    WHERE id = ${userId} and preference = "${category}";
+END IF;`
+
+const options = {
+  query: query,
+  // Location must match that of the dataset(s) referenced in the query.
+  location: "US",
+};
+
+  // Run the query as a job
+  const [job] = await bigQueryClient.createQueryJob(options);
+
+    // Wait for the query to finish
+    await job.getQueryResults();
+
+  });
+
+	res.status(200).json({userId});
 });
 
 app.get("/", (req, res) => {
