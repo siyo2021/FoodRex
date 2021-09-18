@@ -11,8 +11,16 @@ import {
 	HStack,
 	Center,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 function Landing() {
+	const history = useHistory();
+	const handleSubmit = async function (event) {
+		const path = "/swipe";
+		console.log(path);
+		history.push(path);
+	};
+
 	return (
 		<div>
 			<Box bg="orange" width="100%" textAlign="center" pt="70px">
@@ -48,7 +56,7 @@ function Landing() {
 			</Box>
 
 			<Box bg="brownGray" padding="90px 0 75px" textAlign="center">
-				<form>
+				<form onSubmit={handleSubmit}>
 					<FormControl id="postalCode">
 						<Input
 							placeholder="Enter your postal code to get recommendations"

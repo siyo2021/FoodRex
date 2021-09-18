@@ -33,6 +33,7 @@ function SwipePage() {
 		console.log(swipes);
 		handleSwipeChange(swipes + 1);
 		console.log(swipes);
+        // left = -1, right = 1
 	};
 
 	const onCardLeftScreen = (myIdentifier) => {

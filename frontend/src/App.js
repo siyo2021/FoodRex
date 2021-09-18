@@ -8,12 +8,17 @@ import theme from "./theme.js";
 import "@fontsource/alegreya-sans";
 import "@fontsource/alegreya-sans-sc";
 import "@fontsource/chau-philomene-one";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
 	return (
 		<ChakraProvider theme={theme}>
-			<SwipePage />
-			<Footer />
+			<Switch>
+				<Route exact path="/" component={Landing} />
+				<Route exact path="/swipe" component={SwipePage} />
+				<Route exact path="/recommendation" component={RecPage} />
+				<Footer />
+			</Switch>
 		</ChakraProvider>
 	);
 }
