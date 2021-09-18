@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { BigQuery } = require('@google-cloud/bigquery');
@@ -19,9 +20,9 @@ const port = process.env.PORT || "8000";
 // Return a random list of items
 app.get("/items", async (req, res) => {
 
-  const query = `SELECT meta_data as restaurant_info, menu.id as menu_item_id, specification as menu_item_specification, categories FROM \`htn-foodrex.test.restaurants\` as res 
+  const query = `SELECT DISTINCT menu.id as menu_item_id, specification as menu_item_specification, categories, link, meta_data as restaurant_info FROM \`htn-foodrex.test.restaurants\` as res 
   INNER JOIN (
-      SELECT id, restaurant_id, specification, cat.categories FROM \`htn-foodrex.test.menu_items\` as menu
+      SELECT DISTINCT id, restaurant_id, specification, cat.categories, link FROM \`htn-foodrex.test.menu_items\` as menu
       INNER JOIN \`htn-foodrex.test.menu_item_categories\` as cat
       ON menu.id = cat.menu_item_id
       ORDER BY RAND()
