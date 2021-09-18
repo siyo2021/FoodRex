@@ -22,7 +22,7 @@ const theme = extendTheme({
 		sm: "0.875rem",
 		md: "1rem",
 		lg: "1.125rem",
-		xl: "1.25rem",
+		xl: "1.50rem",
 	},
 	fontWeights: {
 		hairline: 100,
