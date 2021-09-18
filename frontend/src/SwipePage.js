@@ -53,6 +53,7 @@ function SwipePage() {
 				onSwipe={onSwipe}
 				onCardLeftScreen={() => onCardLeftScreen("fooBar")}
 				preventSwipe={["up", "down"]}
+
 			>
 				<Image
 					boxSize="500px"
