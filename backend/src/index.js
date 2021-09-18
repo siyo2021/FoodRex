@@ -12,6 +12,7 @@ const options = {
 const bigQueryClient = new BigQuery(options);
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json())
 const port = process.env.PORT || "8000";
 
