@@ -19,29 +19,29 @@ function Landing() {
     return (
 
         <div>
-            <Box bg="orange" align-items="center">
-                <HStack>
-                    <Image src="../Dino.png" alt="A dinosaur" boxSize="80px" />
-                    <Heading>Food Rex</Heading>
+            <Box bg="orange" width="100%" textAlign="center" padding="70px 0 105px">
+                <HStack width="44%" margin="auto" mb="44px">
+                    <Image src="../Dino.png" alt="A dinosaur" boxSize="70px"/>
+                    <Heading fontSize="3.2rem">Food Rex</Heading>
                 </HStack>
-                <Text fontSize="md" color="white">Don’t know what to eat?  We got you!</Text>
+                <Text fontSize="2rem" color="white" mb="">Don’t know what to eat?  We got you!</Text>
             </Box>
 
-            <Box bg="gray.300">
-                <Image src="../Taco.jpg" alt="A taco" />
+            <Box bg="gray.300" width="100%" textAlign="center">
+                <Image src="../Taco.jpg" alt="A taco" boxSize="466px" margin="0 auto"/>
             </Box>
 
-            <Box bg="brownGray" padding="90px 0 75px" alignItems="center">
+            <Box bg="brownGray" padding="90px 0 75px" textAlign="center">
                 <form>
                     <FormControl id="postalCode">
-                        <Input placeholder="Enter your postal code to get recommendations" width="45%" borderRadius="full" bg="white" mb="30px"/>
+                        <Input placeholder="Enter your postal code to get recommendations" width="70%" height="60px" borderRadius="full" bg="white" mb="30px" fontSize="xl"/>
                     </FormControl>
-                    <Button type="submit" bg="red" color="white" borderRadius="full" width="17%">Go!</Button>
+                    <Button type="submit" bg="red" color="white" borderRadius="full" width="25%" height="50px" fontSize="xl">Go!</Button>
                 </form>
             </Box>
-            <Box>
-                <Text fontSize="xl">About Us</Text>
-                <Text>Food Rex (short for “food recommendations”) is a free, AI-powered recommendation engine that enables you to find your next meal with just a few swipes. Enter your postal code to see it in action!</Text>
+            <Box pt="35px" pb="30px" width="100%" pl="55px" pr="25px">
+                <Text fontSize="35px">About Us</Text>
+                <Text fontSize="md">Food Rex (short for “food recommendations”) is a free, AI-powered recommendation engine that enables you to find your next meal with just a few swipes. Enter your postal code to see it in action!</Text>
             </Box>
         </div>
 
