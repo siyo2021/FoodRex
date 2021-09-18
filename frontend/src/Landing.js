@@ -22,7 +22,7 @@ function Landing() {
             <Box bg="orange" width="100%" textAlign="center" padding="70px 0 105px">
                 <HStack width="44%" margin="auto" mb="44px">
                     <Image src="../Dino.png" alt="A dinosaur" boxSize="70px"/>
-                    <Heading fontSize="3.2rem">Food Rex</Heading>
+                    <Heading fontSize="3.2rem" fontFamily="heading">Food Rex</Heading>
                 </HStack>
                 <Text fontSize="2rem" color="white" mb="">Don’t know what to eat?  We got you!</Text>
             </Box>
