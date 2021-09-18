@@ -8,9 +8,11 @@ const theme = extendTheme({
 		gray: {
 			100: "#f6f6f6",
 			200: "#49453c",
+			300: "#F7F7F7"
 		},
 		green: "#c6d44c",
 		red: "#ee3e17",
+		brownGray: "#B5B4B1"
 	},
 	fonts: {
 		body: "Alegreya Sans",
