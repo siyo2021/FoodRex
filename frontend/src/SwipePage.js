@@ -27,8 +27,6 @@ function SwipePage(props) {
 	const [swipes, setSwipes] = useState(1);
 	const [items, setItems] = useState([]);
 
-	const handlePicChange = (e) => setPic(e.target.value);
-	const handleDescriptionChange = (e) => setDescription(e.target.value);
 	let circs = [];
 
 	const onSwipe = (direction) => {
@@ -39,7 +37,13 @@ function SwipePage(props) {
 
 	const onCardLeftScreen = (myIdentifier) => {
 		console.log(myIdentifier + " left the screen");
-		setSwipes(swipes => swipes + 1)
+		console.log(swipes)
+		setSwipes((swipes) => swipes + 1);
+		if (swipes === 10) {
+			const path = "/recommendation";
+			console.log(path);
+			history.push(path);
+		}
 	};
 
 	circs = [];
@@ -59,7 +63,6 @@ function SwipePage(props) {
 		);
 	}
 
-	// let items = props.location.state.items;
 
 	useEffect(() => {
 		const headers = {
@@ -70,40 +73,14 @@ function SwipePage(props) {
 			.then(async (result) => {
 				console.log(result);
 				if (result.status === 200) {
-					setItems( await result.data);
-					console.log(result.data)
+					setItems(await result.data);
+					console.log(result.data);
 				}
 			})
 			.catch((e) => {
 				console.log(e);
 			});
-	} ,[])
-
-
-	const getRecommendations = async function (event) {
-		event.preventDefault();
-		const headers = {
-			"Content-Type": "application/json",
-		};
-		axios
-			.get(`https://htn-foodrex.uc.r.appspot.com/recommendations/1`, {
-				headers,
-			})
-			.then((result) => {
-				console.log(result);
-				if (result.status === 200) {
-					let data = result.data;
-					const path = "/recommendation";
-					console.log(path);
-					history.push(path, {
-						recs: data,
-					});
-				}
-			})
-			.catch((e) => {
-				console.log(e);
-			});
-	};
+	}, []);
 
 	return (
 		<PageWrapper>
@@ -115,13 +92,14 @@ function SwipePage(props) {
 				Swipe through at least 10 images to get your recommendation!
 			</Text>
 			<Box width="100%" mb="33px">
-				<Box className='cardContainer'>
-					{items.map(item =>
+				<Box className="cardContainer">
+					{items.map((item) => (
 						<TinderCard
 							onSwipe={onSwipe}
-							onCardLeftScreen={() => onCardLeftScreen(item.categories)}
+							onCardLeftScreen={() =>
+								onCardLeftScreen(item.categories)
+							}
 							preventSwipe={["up", "down"]}
-							
 						>
 							<Image
 								boxSize="500px"
@@ -132,7 +110,7 @@ function SwipePage(props) {
 								margin="auto"
 							/>
 						</TinderCard>
-					)}
+					))}
 				</Box>
 				<Box
 					bg="gray.300"
@@ -166,6 +144,9 @@ function SwipePage(props) {
 						w="120px"
 						bg="#f59681"
 						ml="63px"
+						onClick={() =>
+							onCardLeftScreen(items[swipes-1].categories)
+						}
 					>
 						<Image
 							src={dislike}
@@ -182,6 +163,9 @@ function SwipePage(props) {
 						w="120px"
 						bg="#89c58b"
 						mr="63px"
+						onClick={() =>
+							onCardLeftScreen(items[swipes-1].categories)
+						}
 					>
 						<Image
 							src={like}
