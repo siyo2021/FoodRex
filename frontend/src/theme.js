@@ -8,15 +8,16 @@ const theme = extendTheme({
 		gray: {
 			100: "#f6f6f6",
 			200: "#49453c",
-			300: "#F7F7F7"
+			300: "#f7f7f7",
+			400: "#c4c4c4",
 		},
 		green: "#c6d44c",
 		red: "#ee3e17",
-		brownGray: "#B5B4B1"
+		brownGray: "#B5B4B1",
 	},
 	fonts: {
 		body: "Alegreya Sans",
-		heading: "Georgia, serif",
+		heading: "Chau Philomene One",
 		mono: "Menlo, monospace",
 	},
 	fontSizes: {
