@@ -1,7 +1,9 @@
+import RecCard from "./components/RecCard";
+
 function RecPage() {
 	return (
         <div>
-            Hi
+            <RecCard></RecCard>
         </div>
 	);
 }
