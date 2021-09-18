@@ -3,6 +3,16 @@ import { Button, VStack, Text } from "@chakra-ui/react";
 import PageWrapper from "./components/PageWrapper";
 
 function RecPage() {
+	const recs = [
+		{
+			"pic": "https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg",
+			"title": "Pepperoni Pizza",
+            "restaurant": "Pizza Pizza",
+            "location": "30 Financial Drive",
+            "price": "$32"
+		},
+	];
+
 	return (
 		<PageWrapper>
 			<Text align="center" fontSize="xl" mt="20">
