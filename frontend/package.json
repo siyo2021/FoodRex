@@ -11,7 +11,7 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "firebase emulators:start",
     "build": "react-scripts build"
   },
   "eslintConfig": {
