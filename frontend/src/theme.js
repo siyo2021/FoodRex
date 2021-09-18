@@ -17,7 +17,7 @@ const theme = extendTheme({
 	},
 	fonts: {
 		body: "Alegreya Sans",
-		heading: "Georgia, serif",
+		heading: "Chau Philomene One",
 		mono: "Menlo, monospace",
 	},
 	fontSizes: {
