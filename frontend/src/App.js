@@ -12,7 +12,7 @@ import "@fontsource/chau-philomene-one";
 function App() {
 	return (
 		<ChakraProvider theme={theme}>
-			<Landing />
+			<SwipePage />
 			<Footer />
 		</ChakraProvider>
 	);
