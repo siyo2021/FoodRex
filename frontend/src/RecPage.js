@@ -11,6 +11,7 @@ function RecPage() {
 			restaurant: "Pizza Pizza",
 			location: "30 Financial Drive",
 			price: "$32",
+			link: "google.ca",
 		},
 		{
 			pic: "https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg",
@@ -18,6 +19,7 @@ function RecPage() {
 			restaurant: "Pizza Pizza",
 			location: "30 Financial Drive",
 			price: "$32",
+			link: "google.ca",
 		},
 		{
 			pic: "https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg",
@@ -25,6 +27,7 @@ function RecPage() {
 			restaurant: "Pizza Pizza",
 			location: "30 Financial Drive",
 			price: "$32",
+			link: "google.ca",
 		},
 	];
 
@@ -44,6 +47,7 @@ function RecPage() {
 						restaurant={rec["restaurant"]}
 						location={rec["location"]}
 						price={rec["price"]}
+						link={rec["link"]}
 					/>
 				);
 			})}

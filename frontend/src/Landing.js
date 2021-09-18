@@ -9,16 +9,33 @@ import {
 	Heading,
 	Box,
 	HStack,
-	Center,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function Landing() {
 	const history = useHistory();
 	const handleSubmit = async function (event) {
-		const path = "/swipe";
-		console.log(path);
-		history.push(path);
+		event.preventDefault();
+		const headers = {
+			"Content-Type": "application/json",
+		};
+		axios
+			.get(`https://htn-foodrex.uc.r.appspot.com/items`, { headers })
+			.then((result) => {
+				console.log(result);
+				if (result.status === 200) {
+					let data = result.data;
+					const path = "/swipe";
+					console.log(path);
+					history.push(path, {
+						items: data,
+					});
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	};
 
 	return (

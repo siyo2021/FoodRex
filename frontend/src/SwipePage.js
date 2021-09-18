@@ -15,8 +15,11 @@ import { useState } from "react";
 import TinderCard from "react-tinder-card";
 import dislike from "./assets/dislike.png";
 import like from "./assets/like.png";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-function SwipePage() {
+function SwipePage(props) {
+	const history = useHistory();
 	const [pic, setPic] = useState(
 		"https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
 	);
@@ -33,7 +36,7 @@ function SwipePage() {
 		console.log(swipes);
 		handleSwipeChange(swipes + 1);
 		console.log(swipes);
-        // left = -1, right = 1
+		// left = -1, right = 1
 	};
 
 	const onCardLeftScreen = (myIdentifier) => {
@@ -56,6 +59,33 @@ function SwipePage() {
 			</Circle>
 		);
 	}
+
+	// let items = props.location.state.items;
+
+	const getRecommendations = async function (event) {
+		event.preventDefault();
+		const headers = {
+			"Content-Type": "application/json",
+		};
+		axios
+			.get(`https://htn-foodrex.uc.r.appspot.com/recommendations/1`, {
+				headers,
+			})
+			.then((result) => {
+				console.log(result);
+				if (result.status === 200) {
+					let data = result.data;
+					const path = "/recommendation";
+					console.log(path);
+					history.push(path, {
+						recs: data,
+					});
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	};
 
 	return (
 		<PageWrapper>
