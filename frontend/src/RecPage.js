@@ -12,6 +12,20 @@ function RecPage() {
 			location: "30 Financial Drive",
 			price: "$32",
 		},
+		{
+			pic: "https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg",
+			title: "Pepperoni Pizza2",
+			restaurant: "Pizza Pizza",
+			location: "30 Financial Drive",
+			price: "$32",
+		},
+		{
+			pic: "https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg",
+			title: "Pepperoni Pizza3",
+			restaurant: "Pizza Pizza",
+			location: "30 Financial Drive",
+			price: "$32",
+		},
 	];
 
 	return (
@@ -21,9 +35,18 @@ function RecPage() {
 				{" "}
 				Here's what we recommend:{" "}
 			</Text>
-			<RecCard></RecCard>
-			<RecCard></RecCard>
-			<RecCard></RecCard>
+			{recs.map((rec, index) => {
+				return (
+					<RecCard
+						key={index}
+						pic={rec["pic"]}
+						title={rec["title"]}
+						restaurant={rec["restaurant"]}
+						location={rec["location"]}
+						price={rec["price"]}
+					/>
+				);
+			})}
 			<VStack mt="20" spacing="3">
 				<Button w="60%" bg="orange" color="white" borderRadius="full">
 					Reset

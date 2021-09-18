@@ -6,7 +6,7 @@ import {
 	Circle,
 	HStack,
 	Image,
-    Spacer
+	Spacer,
 } from "@chakra-ui/react";
 import PageWrapper from "./components/PageWrapper";
 import { useState } from "react";
@@ -14,19 +14,32 @@ import TinderCard from "react-tinder-card";
 import dislike from "./assets/dislike.png";
 import like from "./assets/like.png";
 
-const onSwipe = (direction) => {
-	console.log("You swiped: " + direction);
-};
-
-const onCardLeftScreen = (myIdentifier) => {
-	console.log(myIdentifier + " left the screen");
-};
-
 function SwipePage() {
+	const [pic, setPic] = useState(
+		"https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
+	);
+	const [description, setDescription] = useState("Placeholder text");
+	const [swipes, setSwipes] = useState("1");
+
+	const handlePicChange = (e) => setPic(e.target.value);
+	const handleDescriptionChange = (e) => setDescription(e.target.value);
+	const handleSwipeChange = (e) => setSwipes(swipes+1);
 	let circs = [];
-	let done = 2;
-	let notdone = 10 - done;
-	for (var i = 0; i < done; i++) {
+
+	const onSwipe = (direction) => {
+		console.log("You swiped: " + direction);
+		console.log(swipes);
+		handleSwipeChange(swipes + 1);
+		console.log(swipes);
+	};
+
+	const onCardLeftScreen = (myIdentifier) => {
+		console.log(myIdentifier + " left the screen");
+	};
+
+	circs = [];
+	let notdone = 10 - swipes;
+	for (var i = 0; i < swipes; i++) {
 		circs.push(
 			<Circle size="15px" bg="green" color="white">
 				{" "}
@@ -53,29 +66,35 @@ function SwipePage() {
 				onSwipe={onSwipe}
 				onCardLeftScreen={() => onCardLeftScreen("fooBar")}
 				preventSwipe={["up", "down"]}
-
 			>
 				<Image
 					boxSize="500px"
 					objectFit="cover"
-					src="https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
+					src={pic}
 					alt="Pizza"
 					mt={30}
 				/>
 			</TinderCard>
 			<Box bg="gray.300" mb={30} w="500px" borderBottomRadius="md" p="3">
-				Placeholder text
+				{description}
 			</Box>
 			<HStack spacing="3">{circs}</HStack>
-            <Flex w="500px">
-			<Button borderRadius="full" h="120px" w="120px" bg="#f59681">
-				<Image src={dislike} alt="Dislike" boxSize="90px" m={2} p={2} />
-			</Button>
-            <Spacer />
-			<Button borderRadius="full" h="120px" w="120px" bg="#89c58b">
-				<Image src={like} alt="Like" boxSize="90px" m={2} p={2} />
-			</Button>
-            </Flex>
+			<Flex w="500px">
+				<Button borderRadius="full" h="120px" w="120px" bg="#f59681">
+					<Image
+						src={dislike}
+						alt="Dislike"
+						boxSize="90px"
+						m={2}
+						p={2}
+					/>
+				</Button>
+				<Spacer />
+				<Button borderRadius="full" h="120px" w="120px" bg="#89c58b">
+					<Image src={like} alt="Like" boxSize="90px" m={2} p={2} />
+				</Button>
+				<Button onClick={handleSwipeChange}>Hi</Button>
+			</Flex>
 		</PageWrapper>
 	);
 }
