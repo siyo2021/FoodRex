@@ -11,7 +11,7 @@ import {
 import PageWrapper from "./components/PageWrapper";
 import Header from "./components/Header";
 import RecFooter from "./components/RecFooter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import dislike from "./assets/dislike.png";
 import like from "./assets/like.png";
@@ -24,23 +24,22 @@ function SwipePage(props) {
 		"https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
 	);
 	const [description, setDescription] = useState("Placeholder text");
-	const [swipes, setSwipes] = useState("1");
+	const [swipes, setSwipes] = useState(1);
+	const [items, setItems] = useState([]);
 
 	const handlePicChange = (e) => setPic(e.target.value);
 	const handleDescriptionChange = (e) => setDescription(e.target.value);
-	const handleSwipeChange = (e) => setSwipes(swipes + 1);
 	let circs = [];
 
 	const onSwipe = (direction) => {
 		console.log("You swiped: " + direction);
-		console.log(swipes);
-		handleSwipeChange(swipes + 1);
 		console.log(swipes);
 		// left = -1, right = 1
 	};
 
 	const onCardLeftScreen = (myIdentifier) => {
 		console.log(myIdentifier + " left the screen");
+		setSwipes(swipes => swipes + 1)
 	};
 
 	circs = [];
@@ -61,6 +60,25 @@ function SwipePage(props) {
 	}
 
 	// let items = props.location.state.items;
+
+	useEffect(() => {
+		const headers = {
+			"Content-Type": "application/json",
+		};
+		axios
+			.get(`https://htn-foodrex.uc.r.appspot.com/items`, { headers })
+			.then(async (result) => {
+				console.log(result);
+				if (result.status === 200) {
+					setItems( await result.data);
+					console.log(result.data)
+				}
+			})
+			.catch((e) => {
+				console.log(e);
+			});
+	} ,[])
+
 
 	const getRecommendations = async function (event) {
 		event.preventDefault();
@@ -97,20 +115,25 @@ function SwipePage(props) {
 				Swipe through at least 10 images to get your recommendation!
 			</Text>
 			<Box width="100%" mb="33px">
-				<TinderCard
-					onSwipe={onSwipe}
-					onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-					preventSwipe={["up", "down"]}
-				>
-					<Image
-						boxSize="500px"
-						objectFit="cover"
-						src="https://www.cookingclassy.com/wp-content/uploads/2014/07/pepperoni-pizza3+srgb..jpg"
-						alt="Pizza"
-						mt={30}
-						margin="auto"
-					/>
-				</TinderCard>
+				<Box className='cardContainer'>
+					{items.map(item =>
+						<TinderCard
+							onSwipe={onSwipe}
+							onCardLeftScreen={() => onCardLeftScreen(item.categories)}
+							preventSwipe={["up", "down"]}
+							
+						>
+							<Image
+								boxSize="500px"
+								objectFit="cover"
+								src={item?.link}
+								alt="Pizza"
+								mt={30}
+								margin="auto"
+							/>
+						</TinderCard>
+					)}
+				</Box>
 				<Box
 					bg="gray.300"
 					mb={30}
