@@ -11,6 +11,7 @@ import {
 	HStack,
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
+import Footer from "./components/Footer"
 
 function Landing() {
 	const history = useHistory();
@@ -23,18 +24,18 @@ function Landing() {
 
 	return (
 		<div>
-			<Box bg="orange" width="100%" textAlign="center" pt="70px">
-				<HStack width="44%" margin="auto" mb="40px">
-					<Image src="../Dino.png" alt="A dinosaur" boxSize="70px" />
+			<Box bg="orange" width="100%" textAlign="center" pt="20px">
+				<HStack width="180px" margin="auto" mb="20px">
+					<Image src="../Dino.png" alt="A dinosaur" boxSize="50px" />
 					<Heading
-						fontSize="3.2rem"
+						fontSize="2.0rem"
 						fontFamily="heading"
 						color="gray.500"
 					>
 						Food Rex
 					</Heading>
 				</HStack>
-				<Text fontSize="2rem" color="white" mb="">
+				<Text fontSize="1.3rem" color="white" mb="" width="300px" margin="auto">
 					Don’t know what to eat? We got you!
 				</Text>
 			</Box>
@@ -50,22 +51,22 @@ function Landing() {
 				<Image
 					src="../Taco.jpg"
 					alt="A taco"
-					boxSize="466px"
+					boxSize="300px"
 					margin="0 auto"
 				/>
 			</Box>
 
-			<Box bg="brownGray" padding="90px 0 75px" textAlign="center">
+			<Box bg="brownGray" padding="70px 0 58px" textAlign="center">
 				<form onSubmit={handleSubmit}>
 					<FormControl id="postalCode">
 						<Input
 							placeholder="Enter your postal code to get recommendations"
 							width="70%"
-							height="60px"
+							height="48px"
 							borderRadius="full"
 							bg="white"
 							mb="30px"
-							fontSize="xl"
+							fontSize="sm"
 						/>
 					</FormControl>
 					<Button
@@ -74,14 +75,14 @@ function Landing() {
 						color="white"
 						borderRadius="full"
 						width="25%"
-						height="50px"
+						height="40px"
 						fontSize="xl"
 					>
 						Go!
 					</Button>
 				</form>
 			</Box>
-			<Box pt="35px" pb="30px" width="100%" pl="55px" pr="25px">
+			<Box pt="35px" pb="30px" width="100%" pl="37" pr="30px">
 				<Text fontSize="35px">About Us</Text>
 				<Text fontSize="md">
 					Food Rex (short for “food recommendations”) is a free,
@@ -90,6 +91,7 @@ function Landing() {
 					code to see it in action!
 				</Text>
 			</Box>
+			<Footer />
 		</div>
 	);
 }

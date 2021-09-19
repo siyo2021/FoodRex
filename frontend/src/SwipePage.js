@@ -132,14 +132,7 @@ function SwipePage(props) {
 					margin="auto"
 				>
 					<Flex justifyContent="spaceBetween">
-						<Text>Placeholder text</Text>
-						<Image
-							src="../arrow.png"
-							alt="An arrow pointing downwards"
-							boxSize="8"
-							ml="auto"
-							mr="0"
-						/>
+						<Text>{`${items[swipes - 1].name} | ${items[swipes - 1].categories}`}</Text>
 					</Flex>
 				</Box>
 			</Box>

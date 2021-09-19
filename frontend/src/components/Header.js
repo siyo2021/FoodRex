@@ -3,8 +3,8 @@ import { Box, Text, HStack, Image, Heading } from "@chakra-ui/react";
 function Header() {
 	return (
 		<>
-			<Box bg="orange" width="100%" textAlign="center" pt="70px">
-				<HStack width="44%" margin="auto">
+			<Box bg="orange" width="100%" textAlign="center" pt="20px">
+				<HStack width="265px" margin="auto">
 					<Image src="../Dino.png" alt="A dinosaur" boxSize="70px" />
 					<Heading
 						fontSize="3.2rem"
