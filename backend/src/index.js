@@ -39,7 +39,18 @@ app.get("/items", async (req, res) => {
 
 	// Wait for the query to finish
 	const [rows] = await job.getQueryResults();
-	res.status(200).json(rows);
+
+  const output = [];
+    for (let curr of rows) {
+        const menu_details = JSON.parse(curr.menu_item_specification);
+        output.push({
+            link: curr.link,
+            categories: curr.categories,
+            name: menu_details.name,
+            menu_item_id: curr.menu_item_id,
+        });
+    }
+    res.status(200).json(output);
 });
 
 // Return recommendations for a user
