@@ -131,9 +131,7 @@ function SwipePage(props) {
 					fontSize="md"
 					margin="auto"
 				>
-					<Flex justifyContent="spaceBetween">
-						<Text>{`${items[swipes - 1].name} | ${items[swipes - 1].categories}`}</Text>
-					</Flex>
+					{items[swipes - 1]?.name &&  items[swipes - 1]?.name ? `${items[swipes - 1].name} | ${items[swipes - 1].name}` : ''}
 				</Box>
 			</Box>
 			<Box width="100%" textAlign="center">
