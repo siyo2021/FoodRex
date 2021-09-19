@@ -25,7 +25,7 @@ function Landing() {
 	return (
 		<div>
 			<Box bg="orange" width="100%" textAlign="center" pt="20px">
-				<HStack width="180px" margin="auto" mb="20px">
+				<HStack width="173px" margin="auto" mb="20px">
 					<Image src="../Dino.png" alt="A dinosaur" boxSize="50px" />
 					<Heading
 						fontSize="2.0rem"

@@ -22,7 +22,7 @@
 		"react-tinder-card": "^1.4.0"
 	},
 	"scripts": {
-		"start": "firebase emulators:start",
+		"start": "react-scripts start",
 		"build": "react-scripts build"
 	},
 	"eslintConfig": {
