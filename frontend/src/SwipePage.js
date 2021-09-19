@@ -22,6 +22,7 @@ function SwipePage(props) {
 	const history = useHistory();
 	const [swipes, setSwipes] = useState(1);
 	const [items, setItems] = useState([]);
+	const [cards, setCards] = useState([]);
 
 	let circs = [];
 
@@ -34,7 +35,9 @@ function SwipePage(props) {
 	const onCardLeftScreen = (myIdentifier) => {
 		console.log(myIdentifier + " left the screen");
 		console.log(swipes)
-		setSwipes((swipes) => swipes + 1);
+		setSwipes((swipes) => {
+			return swipes < 10? swipes + 1 : 10
+		});
 		if (swipes === 10) {
 			const path = "/recommendation";
 			console.log(path);
@@ -70,6 +73,7 @@ function SwipePage(props) {
 				console.log(result);
 				if (result.status === 200) {
 					setItems(await result.data);
+					console.log(`Cards length: ${cards.length}`)
 					console.log(result.data);
 				}
 			})
@@ -88,26 +92,36 @@ function SwipePage(props) {
 				Swipe through at least 10 images to get your recommendation!
 			</Text>
 			<Box width="100%" mb="33px">
-				<Box className="cardContainer">
-					{items.map((item) => (
-						<TinderCard
-							onSwipe={onSwipe}
-							onCardLeftScreen={() =>
-								onCardLeftScreen(item.categories)
-							}
-							preventSwipe={["up", "down"]}
-						>
-							<Image
-								boxSize="500px"
-								objectFit="cover"
-								src={item?.link}
-								alt="Pizza"
-								mt={30}
-								margin="auto"
-							/>
-						</TinderCard>
-					))}
+				<Box width="500px" margin="auto" position="relative>">
+					{
+						items.map((item, index) => {
+							console.log(items.length - index)
+							return (
+								<TinderCard
+									onSwipe={onSwipe}
+									onCardLeftScreen={() =>
+										onCardLeftScreen(item.categories)
+									}
+									preventSwipe={["up", "down"]}
+									height="500px"
+									width="500px"
+								>
+									<Image
+										boxSize="500px"
+										objectFit="cover"
+										src={item?.link}
+										alt="Pizza"
+										mt={30}
+										margin="auto"
+										position="absolute"
+										zIndex={items.length - index}
+									/>
+								</TinderCard>
+							)
+						})
+					}
 				</Box>
+				<Box height="500px" width="500px" margin="auto"></Box>
 				<Box
 					bg="gray.300"
 					mb={30}
